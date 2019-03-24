@@ -1,2 +1,2 @@
 # League-Bot
-A person league of legends bot for storing builds and miscellaneous things
+A personal League of Legends bot for storing builds and miscellaneous things
