@@ -12,3 +12,14 @@ def is_staff():
 class Staff(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.command(
+        name='stop',
+        aliases=['shutdown'],
+        description='This is a staff only command to stop the bot'
+    )
+    @is_staff()
+    async def stop_bot(self, ctx):
+        """Shutdown the bot"""
+        await ctx.send('Oh, alright... I\''' just shutup I guess.. :wave:')
+        await self.bot.close()
