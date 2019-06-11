@@ -1,5 +1,6 @@
 from discord.ext import commands
 from discord import Game
+from commands import GeneralCommands
 
 name = None
 prefix = None
@@ -20,6 +21,7 @@ for s in open('./ignore/config.yml'):
         token = value
 
 bot = commands.Bot(command_prefix=prefix, description=description, activity=Game(name='Neeko is best decision'))
+bot.add_cog(GeneralCommands.General(bot))
 
 
 @bot.event
