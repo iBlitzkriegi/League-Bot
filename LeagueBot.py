@@ -1,11 +1,13 @@
 from discord.ext import commands
 from discord import Game
 from commands import GeneralCommands, StaffCommands
+import json
 
 name = None
 prefix = None
 description = None
 token = None
+admins = []
 
 for s in open('./ignore/config.yml'):
     line = s.split('=')
@@ -22,7 +24,11 @@ for s in open('./ignore/config.yml'):
 
 bot = commands.Bot(command_prefix=prefix, description=description, activity=Game(name='Neeko is best decision'))
 bot.add_cog(GeneralCommands.General(bot))
-bot.add_cog(StaffCommands.Staff(bot))
+json_file = open('./jsonFiles/admins.json')
+data = json.load(json_file)
+for admin in data['admins']:
+    admins.append(admin['id'])
+bot.add_cog(StaffCommands.Staff(bot, admins))
 
 
 @bot.event
